@@ -7,6 +7,7 @@ license = "GPL-3.0-or-later"
 readme = "README.md"
 keywords = ["quiz", "custom quiz", "question answering"]
 categories = ["game-development"]
+repository = "https://github.com/JamesClarke7283/Quizzical"
 rust-version = "1.65.0"
 
 [dependencies]
