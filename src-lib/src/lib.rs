@@ -1,24 +1,17 @@
-// lib.rs
-
 pub mod quiz;
 pub mod question;
+pub mod score; // Assuming we're going to create this module for different scoring mechanisms
 
 use serde::{Serialize, Deserialize};
-use crate::question::Question;
-
-pub trait QuizType {
-    fn score(&self, answers: &[Answer]) -> f64;
-    // Add more common methods for quiz types
-}
 
 #[derive(Serialize, Deserialize)]
-pub struct Quiz<T: QuizType> {
+pub struct Quiz<T: quiz::QuizType> {
     pub title: String,
-    pub questions: Vec<Question>,
+    pub questions: Vec<question::Question>,
     pub quiz_type: T,
 }
 
-impl<T: QuizType> Quiz<T> {
+impl<T: quiz::QuizType> Quiz<T> {
     pub fn new(title: String, quiz_type: T) -> Self {
         Quiz {
             title,
@@ -27,12 +20,7 @@ impl<T: QuizType> Quiz<T> {
         }
     }
 
-    pub fn add_question(&mut self, question: Question) {
+    pub fn add_question(&mut self, question: question::Question) {
         self.questions.push(question);
     }
-}
-
-#[derive(Serialize, Deserialize)]
-pub struct Answer {
-    // Define the structure of an answer
 }

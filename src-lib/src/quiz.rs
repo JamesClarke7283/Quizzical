@@ -1,19 +1,18 @@
-// quiz.rs
-
-use super::{QuizType, Answer};
+use super::question::{Question, QuestionType};
 use serde::{Serialize, Deserialize};
 
 #[derive(Serialize, Deserialize)]
-pub struct RegularQuiz {
-    // Regular quiz-specific fields
+pub struct RegularQuiz;
+
+pub trait QuizType {
+    fn score(&self, answers: Vec<String>, questions: &[Question]) -> f64;
 }
 
 impl QuizType for RegularQuiz {
-    fn score(&self, answers: &[Answer]) -> f64 {
-        // Implement scoring for the regular quiz
-        // Return the calculated score as an f64
-        0.0 // Placeholder value, replace with actual scoring logic
-    }
+    fn score(&self, answers: Vec<String>, questions: &[Question]) -> f64 {
+        let total = questions.len();
+        let correct = answers.iter().zip(questions).filter(|(answer, question)| question.validate_answer(answer)).count();
 
-    // Implement more methods for the regular quiz
+        correct as f64 / total as f64 * 100.0
+    }
 }
