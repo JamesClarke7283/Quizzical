@@ -20,3 +20,5 @@ quiz.rs file. Make use of the following crates:
 - thiserror: custom error types for error handling
 - log: gate this behind a feature called "logging" and its added as a
   dev-dependency, it allows custom logging.
+
+  First lests make the quiz.rs, now the Quiz "object" needs to be in the lib.rs. but its implementstion is actually in the quiz.rs. is this a good idea, before we proceed give me some various ideas for variants of this to make the quiz aspect of this crate as ergenomic as possible. 
